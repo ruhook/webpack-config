@@ -1,0 +1,33 @@
+// babel-polyfill 的原理是当运行环境中并没有实现的一些方法，babel-polyfill会做兼容。
+// babel-runtime 它是将es6编译成es5去执行。我们使用es6的语法来编写，最终会通过babel-runtime编译成es5.也就是说，
+// 不管浏览器是否支持ES6，只要是ES6的语法，它都会进行转码成ES5.所以就有很多冗余的代码。
+
+//plugins属性是告诉babel要使用那些插件，这些插件可以控制如何转换代码。
+//presets属性告诉Babel要转换的源码使用了哪些新的语法特性，presets是一组Plugins的集合。
+
+{
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false
+      }
+    ],
+    "stage-2"
+  ],
+  "plugins": [
+    "transform-runtime"
+  ],
+  "comments": false,
+  "env": {
+    "test": {
+      "presets": [
+        "env",
+        "stage-2"
+      ],
+      "plugins": [
+        "istanbul"
+      ]
+    }
+  }
+}
